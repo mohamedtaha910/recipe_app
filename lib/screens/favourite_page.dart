@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:recipe_app/components/favourite_item.dart';
+import 'package:recipe_app/cubits/fav_cubits/fav_cubits.dart';
+import 'package:recipe_app/cubits/fav_cubits/fav_states.dart';
+// import 'package:recipe_app/components/meals_grid.dart';
+import 'package:recipe_app/models/meal_model.dart';
+import 'package:recipe_app/screens/home_page.dart';
+// import 'package:recipe_app/services/favourites_services.dart';
+
+class FavouritePage extends StatefulWidget {
+  const FavouritePage({super.key, required this.isInProfile});
+  final bool isInProfile;
+
+  @override
+  State<FavouritePage> createState() => _FavouritePageState();
+}
+
+class _FavouritePageState extends State<FavouritePage> {
+  List<MealModel> favMeals = [];
+
+  @override
+  void initState() {
+    BlocProvider.of<FavCubit>(context).fetchAllFav();
+    favMeals = BlocProvider.of<FavCubit>(context).favMeals;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FavCubit, FavStates>(
+      
+      builder: (context, state) {
+
+        favMeals = BlocProvider.of<FavCubit>(context).favMeals;
+        
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            surfaceTintColor: Colors.transparent,
+            automaticallyImplyLeading: false,
+            title: Row(
+              children: [
+                // SizedBox(width: 8,),
+                IconButton(
+                  onPressed: () {
+                    widget.isInProfile == true? Navigator.of(context).pop() : 
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
+                  },
+                  icon: Icon(Icons.arrow_back_ios),
+                ),
+                // SizedBox(width: 10,),
+                // Text('Favourite Meals',style: TextStyle(fontWeight: FontWeight.bold),),
+                SvgPicture.asset('assets/text/My Favorites.svg', height: 21),
+              ],
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: favMeals.length,
+              itemBuilder: (context, i) {
+                return FavouriteItem(favMeal: favMeals[i]);
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
