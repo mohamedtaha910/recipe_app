@@ -25,7 +25,7 @@ A modern and clean Flutter application that allows users to explore delicious re
 
 | Search Screen                                      | Favourite Screen                                     |
 | -------------------------------------------------- | ---------------------------------------------------- |
-| ![Search](assets\screenshots\search.png)           | ![Favourite](assets/screenshots/favourites.png)      |
+| ![Search](assets/screenshots/search.png)           | ![Favourite](assets/screenshots/favourites.png)      |
 
 | Details Screen                                     | Details2 Screen                                      |
 | -------------------------------------------------- | ---------------------------------------------------- |
@@ -33,7 +33,7 @@ A modern and clean Flutter application that allows users to explore delicious re
 
 | Ingrediants Screen                                 | Instructions Screen                                  |
 | -------------------------------------------------- | ---------------------------------------------------- |
-| ![Ingrediants](assets/screenshots/incrediants.png) | ![Instructions](assets\screenshots\instractions.png) |
+| ![Ingrediants](assets/screenshots/incrediants.png) | ![Instructions](assets/screenshots/instractions.png) |
 
 | Profile Screen                                     | Home2 Screen                                         |
 | -------------------------------------------------- | ---------------------------------------------------- |
